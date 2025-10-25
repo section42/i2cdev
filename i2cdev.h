@@ -315,6 +315,13 @@ esp_err_t i2c_dev_read_reg(const i2c_dev_t *dev, uint8_t reg, void *data, size_t
  */
 esp_err_t i2c_dev_write_reg(const i2c_dev_t *dev, uint8_t reg, const void *data, size_t size);
 
+
+/**
+ * @brief Get shared I2C bus handle (requires sensor initialized first)
+ */
+esp_err_t i2cdev_get_shared_handle(i2c_port_t port, void **bus_handle);
+
+
 /**
  * @brief Take device mutex with error checking
  */

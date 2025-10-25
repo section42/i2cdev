@@ -895,3 +895,15 @@ esp_err_t i2cdev_done(void)
     ESP_LOGV(TAG, "I2C subsystem cleanup finished with result: %d", result);
     return result;
 }
+
+esp_err_t i2cdev_get_shared_handle(i2c_port_t port, void **bus_handle)
+{
+    if (port >= I2C_NUM_MAX || bus_handle == NULL)
+        return ESP_ERR_INVALID_ARG;
+
+    if (!i2c_ports[port].installed || i2c_ports[port].bus_handle == NULL)
+        return ESP_ERR_INVALID_STATE;
+
+    *bus_handle = (void *)i2c_ports[port].bus_handle;
+    return ESP_OK;
+}
